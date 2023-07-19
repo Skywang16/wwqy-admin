@@ -1,0 +1,90 @@
+{
+	"bsonType": "object",
+	"required": [
+		"title",
+		"content"
+	],
+	"permission": {
+		"read": true,
+		"create": "auth.uid != null",
+		"update": "doc.user_id == auth.uid",
+		"delete": "doc.user_id == auth.uid"
+	},
+	"properties": {
+		"_id": {
+			"description": "存储文档 ID（用户 ID），系统自动生成"
+		},
+		"title": {
+			"bsonType": "string",
+			"title": "标题",
+			"description": "标题",
+			"label": "标题",
+			"trim": "both"
+		},
+		"avatar": {
+			"bsonType": "file",
+			"title": "封面大图",
+			"description": "缩略图地址",
+			"label": "封面大图",
+			"trim": "both"
+		},
+		"author":{
+			"bsonType": "string",
+			"title": "作者",
+			"description": "请输入作者名称",
+			"label": "作者",
+			"trim": "right"
+		},
+		"content": {
+			"bsonType": "string",
+			"title": "文章内容",
+			"description": "文章内容",
+			"label": "文章内容",
+			"trim": "right"
+		},
+		"view_count": {
+			"bsonType": "int",
+			"title": "阅读数量",
+			"description": "阅读数量",
+			"defaultValue":68
+		},
+		"is_essence": {
+			"bsonType": "bool",
+			"title": "推荐",
+			"description": "推荐文章"
+		},
+		"publish_date": {
+			"bsonType": "timestamp",
+			"title": "发表时间",
+			"description": "发表时间",
+			"defaultValue": {
+				"$env": "now"
+			}
+		},
+		"publish_ip": {
+			"bsonType": "string",
+			"title": "发布文章时IP地址",
+			"description": "发表时 IP 地址",
+			"forceDefaultValue": {
+				"$env": "clientIP"
+			}
+		},
+		"article_status": {
+			"bsonType": "int",
+			"title": "文章状态",
+			"description": "文章状态：0 草稿箱 1 已发布",
+			"defaultValue": 1,
+			"enum": [
+				{
+					"value": 0,
+					"text": "草稿箱"
+				},
+				{
+					"value": 1,
+					"text": "已发布"
+				}
+			]
+		}
+	},
+	"version": "0.0.1"
+}

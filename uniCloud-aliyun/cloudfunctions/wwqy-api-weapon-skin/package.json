@@ -1,0 +1,9 @@
+{
+  "name": "wwqy-api-product",
+  "dependencies": {
+    "wwqy-utils": "file:../common/wwqy-utils"
+  },
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}
